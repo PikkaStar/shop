@@ -4,6 +4,10 @@ class Public::SessionsController < Devise::SessionsController
   before_action :customer_state,only: [:create]
 
 
+    def after_sign_in_path_for(resource)
+    customer_path(current_customer)
+    end
+
 
   private
   def customer_state
@@ -14,6 +18,8 @@ class Public::SessionsController < Devise::SessionsController
       redirect_to new_customer_registration_path
     end
   end
+
+
 
 
 end
